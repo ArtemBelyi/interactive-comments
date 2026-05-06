@@ -1,0 +1,17 @@
+node_modules
+dist
+
+# local env files
+.env.local
+.env.*.local
+
+# Logs
+logs
+*.log
+npm-debug.log*
+
+# AI files
+style-guide.md
+QWEN.md
+AGENTS.md
+README-template.md

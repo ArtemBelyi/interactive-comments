@@ -1,0 +1,24 @@
+{
+  "name": "interactive-comments-node",
+  "version": "1.0.0",
+  "description": "interactive-comments-node",
+  "license": "ISC",
+  "author": "belyi_ai",
+  "type": "commonjs",
+  "main": "index.js",
+  "scripts": {
+    "build": "tsc",
+    "start": "tsx watch src/index.ts",
+    "prod": "node dist/index.js"
+  },
+  "dependencies": {
+    "express": "^5.2.1"
+  },
+  "devDependencies": {
+    "@tsconfig/node24": "^24.0.4",
+    "@types/express": "^5.0.6",
+    "@types/node": "^25.6.0",
+    "tsx": "^4.21.0",
+    "typescript": "^6.0.3"
+  }
+}
