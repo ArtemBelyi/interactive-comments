@@ -10,8 +10,30 @@ logs
 *.log
 npm-debug.log*
 
+# IDEs and editors
+.idea/
+.project
+.classpath
+.c9/
+*.launch
+.settings/
+*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+!.vscode/mcp.json
+.history/*
+
 # AI files
 style-guide.md
 QWEN.md
 AGENTS.md
 README-template.md
+
+# System files
+.DS_Store
+Thumbs.db
