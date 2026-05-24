@@ -9,3 +9,5 @@ class UserRepository {
         return UserModel.create(user);
     }
 }
+
+export default new UserRepository();

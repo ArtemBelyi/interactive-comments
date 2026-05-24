@@ -1,17 +1,14 @@
 import 'dotenv/config';
 import express from 'express';
 import { config } from './config';
-import { Request, Response } from 'express';
+import userRouter from './routes/user';
 import { connectDB, disconnectDB } from './config/database';
 
 const app = express()
 
 app.use(express.json());
 
-app.get('/', (req: Request, res: Response) => {
-  res.json({ name: "Ok" })
-})
-
+app.use(userRouter);
 
 async function startServer(): Promise<void> {
   try {
@@ -31,3 +28,7 @@ process.on('SIGINT', async (): Promise<void> => {
 });
 
 startServer();
+
+// TODO 
+// Написать middleware responseHandler для оберки успешных результатов в обертку с типами { status, text, data } все ответы должны быть одинаковыми 
+// Написать middleware errorHandler для обертки ошибок также в одинаковый объект, использовать express-validator
