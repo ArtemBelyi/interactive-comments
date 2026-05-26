@@ -1,4 +1,5 @@
 export const SUCCESS_MESSAGES = {
+  REQUEST_SUCCESS: "Request completed successfully",
   USER_CREATED: "User created successfully",
   USER_UPDATED: "User updated successfully",
   USER_DELETED: "User deleted successfully",
@@ -6,6 +7,7 @@ export const SUCCESS_MESSAGES = {
 };
 
 export const ERROR_MESSAGES = {
+  VALIDATION_FAILED: "Validation failed",
   SERVER: "Internal Server Error",
   USER_NOT_FOUND: "User not found",
   USER_ALREADY_EXISTS: "User already exists",
@@ -18,6 +20,6 @@ export const ERROR_MESSAGES = {
   },
   
   INVALID: {
-    USERNAME: "Username must be at least 3 characters",
+    USERNAME: "Username must be at least 4 characters",
   }
 };

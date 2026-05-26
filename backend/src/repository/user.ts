@@ -2,7 +2,7 @@ import UserModel, { IUser } from "../models/user"
 
 class UserRepository {
     async getAllUsers(): Promise<IUser[]> {
-        return UserModel.find().exec();
+        return UserModel.find();
     }
 
     async createUser(user: IUser): Promise<IUser> {
