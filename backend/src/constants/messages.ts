@@ -3,6 +3,9 @@ export const SUCCESS_MESSAGES = {
   USER_CREATED: "User created successfully",
   USER_UPDATED: "User updated successfully",
   USER_DELETED: "User deleted successfully",
+  COMMENT_CREATED: "Comment created successfully",
+  COMMENT_UPDATED: "Comment updated successfully",
+  COMMENT_DELETED: "Comment deleted successfully",
   LOGIN: "Login successful"
 };
 
@@ -17,9 +20,11 @@ export const ERROR_MESSAGES = {
 
    REQUIRED: {
     USERNAME: "Username is required",
+    CONTENT: "Content is required",
   },
   
   INVALID: {
     USERNAME: "Username must be at least 4 characters",
+    CONTENT: "Content must be at least 4 characters",
   }
 };

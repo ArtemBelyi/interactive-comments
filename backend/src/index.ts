@@ -1,9 +1,11 @@
 import 'dotenv/config';
 import express from 'express';
+
 import { config } from './config';
-import userRouter from './routes/user';
 import { connectDB, disconnectDB } from './config/database';
 import { responseHandler } from './middlewares/responseHandler';
+import userRouter from './routes/user';
+import commentRouter from './routes/comment';
 
 const app = express()
 
@@ -12,6 +14,8 @@ app.use(express.json());
 app.use(responseHandler);
 
 app.use(userRouter);
+
+app.use(commentRouter);
 
 async function startServer(): Promise<void> {
   try {
@@ -31,3 +35,6 @@ process.on('SIGINT', async (): Promise<void> => {
 });
 
 startServer();
+
+// TODO
+// Eslint + style rules
