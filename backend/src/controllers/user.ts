@@ -1,25 +1,29 @@
-import { Request, Response } from "express";
+import { CookieOptions, Request, Response } from "express";
 import UserService from "../services/user"
+import { TokenService } from "../services/token";
 import { IUser } from "../models/user";
-import { ERROR_MESSAGES, SUCCESS_MESSAGES } from "../constants/messages";
+import { SUCCESS_MESSAGES } from "../constants/messages";
 
 class UserController {
     async getAllUsers(_req: Request, res: Response): Promise<void> {
         try {
             const users = await UserService.getAllUsers();
             res.ok(users, SUCCESS_MESSAGES.REQUEST_SUCCESS);
-        } catch {
-            res.error(ERROR_MESSAGES.SERVER);
+        } catch (error) {
+            res.error(error as string);
         }
     }
 
     async createUser(req: Request, res: Response): Promise<void> {
         try {
             const user = req.body as IUser;
-            const currentUser = await UserService.createUser(user);
-            res.created(currentUser, SUCCESS_MESSAGES.USER_CREATED)
-        } catch {
-            res.error(ERROR_MESSAGES.SERVER);
+            const newUser = await UserService.createUser(user);
+            const token = TokenService.generateToken(newUser.id, newUser.username);
+            const options: CookieOptions = { httpOnly: true, maxAge: 30 * 60 * 1000 };
+            res.cookie("accessToken", token, options);
+            res.created(newUser, SUCCESS_MESSAGES.USER_CREATED);
+        } catch (error) {
+            res.error(error as string);
         }
     }
 }
