@@ -5,6 +5,7 @@ import cookieParser from 'cookie-parser';
 import { config } from './config';
 import { connectDB, disconnectDB } from './config/database';
 import { responseHandler } from './middlewares/responseHandler';
+import authMiddleware from './middlewares/auth'
 import userRouter from './routes/user';
 import authRouter from './routes/auth';
 import commentRouter from './routes/comment';
@@ -18,8 +19,11 @@ app.use(responseHandler);
 
 app.use(authRouter);
 
-app.use(userRouter);
+app.use(authMiddleware);
 
+
+
+app.use(userRouter);
 app.use(commentRouter);
 
 async function startServer(): Promise<void> {

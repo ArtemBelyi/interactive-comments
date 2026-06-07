@@ -12,6 +12,11 @@ class UserService {
         const createdUser = await UserRepository.create(user);
         return new UserResponseDTO(createdUser);
     }
+
+    async findByUsername(username: string): Promise<UserResponseDTO | null> {
+        const user = await UserRepository.findByUsername(username);
+        return user ? new UserResponseDTO(user) : null;
+    }
 }
 
 export default new UserService();

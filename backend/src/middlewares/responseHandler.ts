@@ -34,7 +34,7 @@ class ResponseHandler {
   }
 }
 
-export const responseHandler = (req: Request, res: Response, next: NextFunction): void => {
+export const responseHandler = (_req: Request, res: Response, next: NextFunction): void => {
   const handler = new ResponseHandler();
   
   res.ok = <T>(data: T, message?: string): Response => {

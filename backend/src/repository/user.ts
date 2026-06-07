@@ -18,10 +18,6 @@ class UserRepository {
         return UserModel.findById(id);
     }
 
-    async findByEmail(email: string): Promise<IUser | null> {
-        return UserModel.findOne({ email });
-    }
-
     async update(id: string, data: Partial<IUser>): Promise<IUser | null> {
         return UserModel.findByIdAndUpdate(id, data, { new: true });
     }
