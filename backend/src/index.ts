@@ -6,6 +6,7 @@ import { config } from './config';
 import { connectDB, disconnectDB } from './config/database';
 import { responseHandler } from './middlewares/responseHandler';
 import userRouter from './routes/user';
+import authRouter from './routes/auth';
 import commentRouter from './routes/comment';
 
 const app = express()
@@ -14,6 +15,8 @@ app.use(express.json());
 app.use(cookieParser()); // TODO рассмотреть возможности добавления secret и decodeFn в options
 
 app.use(responseHandler);
+
+app.use(authRouter);
 
 app.use(userRouter);
 

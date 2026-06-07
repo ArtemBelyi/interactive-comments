@@ -1,18 +1,34 @@
 import UserModel, { IUser } from "../models/user"
 
 class UserRepository {
-    async getAllUsers(): Promise<IUser[]> {
+    async getAll(): Promise<IUser[]> {
         return UserModel.find();
     }
 
-    async createUser(user: IUser): Promise<IUser> {
+    async create(user: IUser): Promise<IUser> {
         return UserModel.create(user);
     }
 
-    async findUser({ username }: IUser): Promise<IUser | null> {
-        const qwery = UserModel.where(username);
-        return qwery.findOne();
+    async findByUsername(username: string): Promise<IUser | null> {
+        const query = UserModel.where(username);
+        return query.findOne();
+    }
+
+    async findById(id: string): Promise<IUser | null> {
+        return UserModel.findById(id);
+    }
+
+    async findByEmail(email: string): Promise<IUser | null> {
+        return UserModel.findOne({ email });
+    }
+
+    async update(id: string, data: Partial<IUser>): Promise<IUser | null> {
+        return UserModel.findByIdAndUpdate(id, data, { new: true });
+    }
+
+    async delete(id: string): Promise<IUser | null> {
+        return UserModel.findByIdAndDelete(id);
     }
 }
 
-export default new UserRepository();
+export default new UserRepository(); 

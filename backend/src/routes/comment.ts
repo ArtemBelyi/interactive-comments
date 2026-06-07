@@ -10,13 +10,12 @@ const router = Router();
 const createCommentValidation = [
   check("content")
     .notEmpty().withMessage(ERROR_MESSAGES.REQUIRED.CONTENT)
-    .isLength({ min: 4 }).withMessage(ERROR_MESSAGES.INVALID.USERNAME),
+    .isLength({ min: 4 }).withMessage(ERROR_MESSAGES.INVALID.CONTENT),
   validateResult
 ];
 
 // Routes
-router.get("/comments", CommentController.getAllComments);
-
-router.post("/comments", createCommentValidation, CommentController.addComment);
+router.get("/comments", CommentController.findAll);
+router.post("/comments", createCommentValidation, CommentController.create);
 
 export default router;

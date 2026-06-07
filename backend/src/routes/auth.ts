@@ -1,12 +1,11 @@
 import { Router } from "express";
-import UserController from "../controllers/user";
+import AuthController from "../controllers/auth"
 import { check } from 'express-validator';
 import { validateResult } from "../middlewares/validationHandler";
 import { ERROR_MESSAGES } from "../constants/messages";
 
 const router = Router();
 
-// Validation schemas
 const authValidation = [
   check('username')
     .notEmpty().withMessage(ERROR_MESSAGES.REQUIRED.USERNAME)
@@ -14,8 +13,8 @@ const authValidation = [
   validateResult
 ];
 
-router.post("/register", authValidation, UserController.createUser);
+router.post("/register", authValidation, AuthController.register);
 
-router.post("/login", authValidation, UserController.createUser);
+router.post("/login", authValidation, AuthController.login);
 
 export default router;

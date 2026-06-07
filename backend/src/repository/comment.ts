@@ -2,8 +2,7 @@ import CommentModel, { IComment } from "../models/comment";
 import mongoose, { PopulateOptions } from "mongoose";
 
 class CommentRepository {
-    async getComments(): Promise<IComment[]> {
-        
+    async findAll(): Promise<IComment[]> {
         const options: PopulateOptions = {
             path: "user",
             select: "username"
@@ -12,8 +11,7 @@ class CommentRepository {
         return CommentModel.find().populate(options);
     }
 
-    async createComment(data: IComment): Promise<IComment> {
-
+    async create(data: IComment): Promise<IComment> {
         const comment = {
             content: data.content,
             user: new mongoose.Types.ObjectId(data.user),
@@ -23,8 +21,24 @@ class CommentRepository {
         return CommentModel.create(comment);
     }
 
-    async getCommentsByUser(userId: string): Promise<IComment[]> {
+    async findByUser(userId: string): Promise<IComment[]> {
         return CommentModel.find({ user: userId });
+    }
+
+    async findById(id: string): Promise<IComment | null> {
+        return CommentModel.findById(id);
+    }
+
+    async update(id: string, data: Partial<IComment>): Promise<IComment | null> {
+        return CommentModel.findByIdAndUpdate(id, data, { new: true });
+    }
+
+    async delete(id: string): Promise<IComment | null> {
+        return CommentModel.findByIdAndDelete(id);
+    }
+
+    async findByScore(minScore: number): Promise<IComment[]> {
+        return CommentModel.find({ score: { $gte: minScore } });
     }
 }
 
