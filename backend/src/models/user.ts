@@ -1,15 +1,24 @@
 import mongoose, { Schema, Document, Model } from "mongoose";
 
-export interface IUser extends Document {
+export class User extends Document {
     username: string;
     password: string;
     image: { png: string; webp: string };
+
+    constructor(user: { username: string; password: string; image?: { png: string; webp: string } }) {
+        super();
+        this.username = user.username;
+        this.password = user.password;
+        this.image = user?.image ?? { png: "",  webp: "" };
+    }
 }
 
-type UserModel = Model<IUser>;
+export type UserWithPassword = User & { password: string }
 
-const userSchema: Schema = new Schema<IUser, UserModel>({
-    username: { 
+type UserModel = Model<User>;
+
+const userSchema: Schema = new Schema<User, UserModel>({
+    username: {
         type: String, 
         required: true, 
         unique: true 
@@ -26,5 +35,4 @@ const userSchema: Schema = new Schema<IUser, UserModel>({
     },
 }, { timestamps: true })
 
-
-export default mongoose.model<IUser>("User", userSchema);
+export default mongoose.model<User>("User", userSchema);

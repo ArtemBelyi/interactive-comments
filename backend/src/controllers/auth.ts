@@ -1,13 +1,16 @@
 import { CookieOptions, Request, Response } from "express";
-import UserService from "../services/user"
+import UserService from "../services/user";
 import { TokenService } from "../services/token";
-import { IUser } from "../models/user";
+import { User } from "../models/user";
 import { SUCCESS_MESSAGES } from "../constants/messages";
+import { ERROR_MESSAGES } from "../constants/messages";
+import { HashService } from "../services/hash";
+import { UserRespDTO } from "../dtos/user";
 
 class AuthController {
     async register(req: Request, res: Response): Promise<void> {
         try {
-            const user = req.body as IUser;
+            const user = req.body as User;
             const newUser = await UserService.register(user);
             const token = TokenService.generate(newUser.id, newUser.username);
             const options: CookieOptions = { httpOnly: true, maxAge: 30 * 60 * 1000 };
@@ -20,9 +23,36 @@ class AuthController {
 
     async login(req: Request, res: Response): Promise<void> {
         try {
-            //TODO
+            const loginData = req.body as User;
+
+            if (!loginData.username || !loginData.password) {
+                res.error(ERROR_MESSAGES.INVALID_CREDENTIALS, 400);
+                return;
+            }
+
+            const user = await UserService.findByCredentials(loginData.username) as UserRespDTO & { password: string };
+
+            if (!user) {
+                res.error(ERROR_MESSAGES.INVALID_CREDENTIALS, 401);
+                return;
+            }
+
+            const isPasswordValid = await HashService.compare(
+                loginData.password,
+                user.password
+            );
+
+            if (!isPasswordValid) {
+                res.error(ERROR_MESSAGES.INVALID_CREDENTIALS, 401);
+                return;
+            }
+
+            const token = TokenService.generate(user.id, user.username);
+            const options: CookieOptions = { httpOnly: true, maxAge: 30 * 60 * 1000 };
+            res.cookie("accessToken", token, options);
+            res.ok(user, SUCCESS_MESSAGES.LOGIN);
         } catch (error) {
-            //TODO
+            res.error(error as string);
         }
     }
 }

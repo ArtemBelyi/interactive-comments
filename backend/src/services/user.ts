@@ -1,21 +1,39 @@
 import UserRepository from "../repository/user"
-import { IUser } from "../models/user"
-import { UserResponseDTO } from "../dtos/user";
+import { User } from "../models/user"
+import { UserRespDTO } from "../dtos/user";
+import { HashService } from "./hash";
+import { ERROR_MESSAGES } from "../constants/messages";
 
 class UserService {
-    async getAll(): Promise<UserResponseDTO[]> {
+    async getAll(): Promise<UserRespDTO[]> {
         const users = await UserRepository.getAll();
-        return users.map(user => new UserResponseDTO(user));
+        return users.map(user => new UserRespDTO(user));
     }
 
-    async register(user: IUser): Promise<UserResponseDTO> {
-        const createdUser = await UserRepository.create(user);
-        return new UserResponseDTO(createdUser);
+    async register(user: User): Promise<UserRespDTO> {
+        const { username, password } = user;
+
+        const isUserExists = await this.findByUsername(username);
+
+        if (!!isUserExists) {
+            throw new Error(ERROR_MESSAGES.USER_ALREADY_EXISTS);
+        }
+
+        const hashedPassword = await HashService.hash(password);
+        const newUserData = new User({ username, password: hashedPassword });
+
+        const createdUser = await UserRepository.create(newUserData);
+        return new UserRespDTO(createdUser);
     }
 
-    async findByUsername(username: string): Promise<UserResponseDTO | null> {
+    async findByUsername(username: string): Promise<User | null> {
         const user = await UserRepository.findByUsername(username);
-        return user ? new UserResponseDTO(user) : null;
+        return user ? user : null;
+    }
+
+    async findByCredentials(username: string): Promise<UserRespDTO | null> {
+        const user = await UserRepository.findByCredentials(username);
+        return user ? new UserRespDTO(user) : null;
     }
 }
 

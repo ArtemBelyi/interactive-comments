@@ -1,11 +1,11 @@
-import { IUser } from "../models/user";
+import { User, UserWithPassword } from "../models/user";
 
-export class UserResponseDTO {
+export class UserRespDTO {
     id: string;
     username: string;
     image: { png: string; webp: string };
 
-    constructor(user: IUser) {
+    constructor(user: User | UserWithPassword) {
         this.id = user._id.toString();
         this.username = user.username;
         this.image = user.image;

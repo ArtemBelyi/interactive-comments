@@ -13,15 +13,13 @@ import commentRouter from './routes/comment';
 const app = express()
 
 app.use(express.json());
-app.use(cookieParser()); // TODO рассмотреть возможности добавления secret и decodeFn в options
+app.use(cookieParser());
 
 app.use(responseHandler);
 
 app.use(authRouter);
 
 app.use(authMiddleware);
-
-
 
 app.use(userRouter);
 app.use(commentRouter);
@@ -47,3 +45,4 @@ startServer();
 
 // TODO
 // Eslint + style rules
+// Протестировать register/login пользователя

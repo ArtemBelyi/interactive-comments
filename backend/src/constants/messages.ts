@@ -33,9 +33,6 @@ export const ERROR_MESSAGES = {
     REFRESH_TOKEN_NOT_FOUND: "Refresh token not found",
     REFRESH_TOKEN_INVALID: "Invalid refresh token",
     
-    NO_AUTH_HEADER: "Authorization header is missing",
-    INVALID_AUTH_SCHEME: "Invalid authorization scheme. Use Bearer",
-    
     SESSION_EXPIRED: "Session expired. Please login again",
     ACCOUNT_LOCKED: "Account is locked. Too many failed attempts",
     ACCOUNT_NOT_VERIFIED: "Account not verified. Please check your email",

@@ -1,28 +1,33 @@
-import UserModel, { IUser } from "../models/user"
+import UserModel, { User, UserWithPassword } from "../models/user"
 
 class UserRepository {
-    async getAll(): Promise<IUser[]> {
+    async getAll(): Promise<User[]> {
         return UserModel.find();
     }
 
-    async create(user: IUser): Promise<IUser> {
+    async create(user: User): Promise<User> {
         return UserModel.create(user);
     }
 
-    async findByUsername(username: string): Promise<IUser | null> {
+    async findByUsername(username: string): Promise<User | null> {
         const query = UserModel.where(username);
         return query.findOne();
     }
 
-    async findById(id: string): Promise<IUser | null> {
+    async findByCredentials(username: string): Promise<UserWithPassword | null> {
+        const query = UserModel.where(username);
+        return query.findOne().select("+password");
+    }
+
+    async findById(id: string): Promise<User | null> {
         return UserModel.findById(id);
     }
 
-    async update(id: string, data: Partial<IUser>): Promise<IUser | null> {
+    async update(id: string, data: Partial<User>): Promise<User | null> {
         return UserModel.findByIdAndUpdate(id, data, { new: true });
     }
 
-    async delete(id: string): Promise<IUser | null> {
+    async delete(id: string): Promise<User | null> {
         return UserModel.findByIdAndDelete(id);
     }
 }

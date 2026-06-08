@@ -2,8 +2,6 @@ import jwt, { SignOptions, JwtPayload } from "jsonwebtoken";
 import { config } from "../config";
 import { ERROR_MESSAGES } from "../constants/messages";
 
-// export type PayloadTokenType = { id: string; username: string };
-
 interface IPayloadToken extends JwtPayload {
 	id: string; 
 	username: string 
