@@ -1,5 +1,5 @@
 import UserRepository from "../repository/user"
-import { User } from "../models/user"
+import { User, UserWithPassword, UserPublic } from "../models/user"
 import { UserRespDTO } from "../dtos/user";
 import { HashService } from "./hash";
 import { ERROR_MESSAGES } from "../constants/messages";
@@ -31,9 +31,8 @@ class UserService {
         return user ? user : null;
     }
 
-    async findByCredentials(username: string): Promise<UserRespDTO | null> {
-        const user = await UserRepository.findByCredentials(username);
-        return user ? new UserRespDTO(user) : null;
+    async findByCredentials(username: string): Promise<UserWithPassword | null> {
+        return await UserRepository.findByCredentials(username);
     }
 }
 

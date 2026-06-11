@@ -1,4 +1,4 @@
-import UserModel, { User, UserWithPassword } from "../models/user"
+import UserModel, { User, UserWithPassword, UserPublic } from "../models/user"
 
 class UserRepository {
     async getAll(): Promise<User[]> {
@@ -10,13 +10,11 @@ class UserRepository {
     }
 
     async findByUsername(username: string): Promise<User | null> {
-        const query = UserModel.where(username);
-        return query.findOne();
+        return UserModel.findOne({ username });
     }
 
     async findByCredentials(username: string): Promise<UserWithPassword | null> {
-        const query = UserModel.where(username);
-        return query.findOne().select("+password");
+        return UserModel.findOne({ username }).select('+password');
     }
 
     async findById(id: string): Promise<User | null> {

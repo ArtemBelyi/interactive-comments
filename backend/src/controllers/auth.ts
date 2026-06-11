@@ -30,16 +30,21 @@ class AuthController {
                 return;
             }
 
-            const user = await UserService.findByCredentials(loginData.username) as UserRespDTO & { password: string };
+            const user = await UserService.findByCredentials(loginData.username);
 
             if (!user) {
                 res.error(ERROR_MESSAGES.INVALID_CREDENTIALS, 401);
                 return;
             }
 
+
+            console.log("loginData", loginData);
+
+            console.log("USER", user);
+
             const isPasswordValid = await HashService.compare(
                 loginData.password,
-                user.password
+                user.password,
             );
 
             if (!isPasswordValid) {
@@ -47,10 +52,10 @@ class AuthController {
                 return;
             }
 
-            const token = TokenService.generate(user.id, user.username);
+            const token = TokenService.generate(user._id.toString(), user.username);
             const options: CookieOptions = { httpOnly: true, maxAge: 30 * 60 * 1000 };
             res.cookie("accessToken", token, options);
-            res.ok(user, SUCCESS_MESSAGES.LOGIN);
+            res.ok(new UserRespDTO(user), SUCCESS_MESSAGES.LOGIN);
         } catch (error) {
             res.error(error as string);
         }

@@ -44,5 +44,4 @@ process.on('SIGINT', async (): Promise<void> => {
 startServer();
 
 // TODO
-// Eslint + style rules
-// Протестировать register/login пользователя
+// Не работает register и login 

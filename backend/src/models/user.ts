@@ -13,7 +13,11 @@ export class User extends Document {
     }
 }
 
-export type UserWithPassword = User & { password: string }
+// User without password for responses
+export type UserPublic = Omit<User, 'password'>;
+
+// User with password for authentication only
+export type UserWithPassword = User & { password: string };
 
 type UserModel = Model<User>;
 
