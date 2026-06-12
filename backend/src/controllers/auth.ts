@@ -37,11 +37,6 @@ class AuthController {
                 return;
             }
 
-
-            console.log("loginData", loginData);
-
-            console.log("USER", user);
-
             const isPasswordValid = await HashService.compare(
                 loginData.password,
                 user.password,

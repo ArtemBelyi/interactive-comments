@@ -44,4 +44,5 @@ process.on('SIGINT', async (): Promise<void> => {
 startServer();
 
 // TODO
-// Не работает register и login 
+// register
+// login

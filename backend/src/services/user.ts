@@ -1,7 +1,6 @@
 import UserRepository from "../repository/user"
-import { User, UserWithPassword, UserPublic } from "../models/user"
+import { User, UserPublic } from "../models/user"
 import { UserRespDTO } from "../dtos/user";
-import { HashService } from "./hash";
 import { ERROR_MESSAGES } from "../constants/messages";
 
 class UserService {
@@ -11,7 +10,7 @@ class UserService {
     }
 
     async register(user: User): Promise<UserRespDTO> {
-        const { username, password } = user;
+        const { username } = user;
 
         const isUserExists = await this.findByUsername(username);
 
@@ -19,16 +18,12 @@ class UserService {
             throw new Error(ERROR_MESSAGES.USER_ALREADY_EXISTS);
         }
 
-        const hashedPassword = await HashService.hash(password);
-        const newUserData = new User({ username, password: hashedPassword });
-
-        const createdUser = await UserRepository.create(newUserData);
+        const createdUser = await UserRepository.create(user);
         return new UserRespDTO(createdUser);
     }
 
     async findByUsername(username: string): Promise<UserPublic | null> {
-        const user = await UserRepository.findByUsername(username);
-        return user ? user : null;
+        return await UserRepository.findByUsername(username);
     }
 
     async findByCredentials(username: string): Promise<User | null> {
