@@ -26,12 +26,12 @@ class UserService {
         return new UserRespDTO(createdUser);
     }
 
-    async findByUsername(username: string): Promise<User | null> {
+    async findByUsername(username: string): Promise<UserPublic | null> {
         const user = await UserRepository.findByUsername(username);
         return user ? user : null;
     }
 
-    async findByCredentials(username: string): Promise<UserWithPassword | null> {
+    async findByCredentials(username: string): Promise<User | null> {
         return await UserRepository.findByCredentials(username);
     }
 }

@@ -10,6 +10,8 @@ const authValidation = [
   check('username')
     .notEmpty().withMessage(ERROR_MESSAGES.REQUIRED.USERNAME)
     .isLength({ min: 4 }).withMessage(ERROR_MESSAGES.INVALID.USERNAME),
+  check('password')
+    .notEmpty().withMessage(ERROR_MESSAGES.REQUIRED.PASSWORD),
   validateResult
 ];
 
