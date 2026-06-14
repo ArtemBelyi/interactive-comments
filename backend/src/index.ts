@@ -44,5 +44,12 @@ process.on('SIGINT', async (): Promise<void> => {
 startServer();
 
 // TODO
-// register
-// login
+// Ответы в запросах
+// "_id": "6a2ef58e5b5d3487efc9add7",
+            // "content": "Tomat comment_1",
+            // "score": 0,
+            // "user": {
+            //     "_id": "6a2ee58505a3d6b95962e100",
+            //     "username": "Tomat"
+            // },
+// Создать CommentsRespDto убрать лишние мвойства для фронта

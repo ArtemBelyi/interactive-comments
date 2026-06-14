@@ -15,7 +15,8 @@ const createCommentValidation = [
 ];
 
 // Routes
-router.get("/comments", CommentController.findAll);
+router.get("/comments", CommentController.findByUser);
+router.get("/comments/all", CommentController.findAll);
 router.post("/comments", createCommentValidation, CommentController.create);
 
 export default router;

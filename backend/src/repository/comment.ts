@@ -22,7 +22,12 @@ class CommentRepository {
     }
 
     async findByUser(userId: string): Promise<IComment[]> {
-        return CommentModel.find({ user: userId });
+        const options: PopulateOptions = {
+            path: "user",
+            select: "username"
+        }
+
+        return CommentModel.find({ user: userId }).populate(options);
     }
 
     async findById(id: string): Promise<IComment | null> {
