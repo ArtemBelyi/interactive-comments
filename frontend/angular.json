@@ -9,7 +9,11 @@
   "projects": {
     "fontend": {
       "projectType": "application",
-      "schematics": {},
+      "schematics": {
+         "@schematics/angular:service": {
+            "path": "src/app/core/services"
+        }
+      },
       "root": "",
       "sourceRoot": "src",
       "prefix": "app",
@@ -27,11 +31,12 @@
               }
             ],
             "styles": [
-              "src/styles.css"
+              "src/styles/styles.css"
             ]
           },
           "configurations": {
             "production": {
+              "optimization": true,
               "budgets": [
                 {
                   "type": "initial",
