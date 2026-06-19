@@ -27,10 +27,23 @@ body {
 // сделать как на https://github.com/deep-top и https://codepen.io/login
 
 :root {
+  // text button
+  @include mat.button-overrides((
+    text-container-shape: 8px,
+    text-label-text-size: vars.$font-weight-bold,
+    text-label-text-font: vars.$font-family,
+  ));
   // filled button
   @include mat.button-overrides((
     filled-container-shape: 8px,
+    filled-container-color: vars.$color-purple-600,
+    filled-label-text-size: vars.$font-weight-bold,
+    filled-label-text-font: vars.$font-family
+  ));
+  // outlined button
+  @include mat.button-overrides((
     outlined-container-shape: 8px,
-    filled-container-color: vars.$color-purple-600
+    outlined-label-text-size: vars.$font-weight-bold,
+    outlined-label-text-font: vars.$font-family,
   ));
 }

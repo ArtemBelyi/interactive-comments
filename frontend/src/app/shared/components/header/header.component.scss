@@ -8,10 +8,25 @@
   font-size: vars.$font-size-body;
   font-weight: vars.$font-weight-regular;
   margin: 0;
-}
 
-.header-content {
-  width: 100%;
-  display: flex;
-  justify-content: space-between;
+  .header-content {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .header-content_label {
+      text-align: center;
+    }
+
+    .header-content_buttons {
+      display: flex;
+      gap: 12px;
+
+      button {
+        color: vars.$color-white;
+        border-color: vars.$color-white;
+      }
+    }
+  }
 }

@@ -6,6 +6,8 @@ $color-pink-400: hsl(358, 79%, 66%);
 $color-purple-200: hsl(239, 57%, 85%);
 $color-pink-200: hsl(357, 100%, 86%);
 
+$color-purple-600-hover: darken($color-purple-600, 0.5%);
+
 /* Neutral colors */
 $color-grey-800: hsl(212, 24%, 26%);
 $color-grey-500: hsl(211, 10%, 45%);
