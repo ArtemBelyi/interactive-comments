@@ -12,6 +12,9 @@
       "schematics": {
         "@schematics/angular:service": {
           "path": "src/app/core/services"
+        },
+        "@schematics/angular:component": {
+          "standalone": true
         }
       },
       "root": "",
@@ -30,7 +33,7 @@
                 "input": "public"
               }
             ],
-            "styles": ["src/styles/material-theme.scss", "src/styles/styles.css"]
+            "styles": ["src/styles/material-theme.scss", "src/styles/styles.scss"]
           },
           "configurations": {
             "production": {

@@ -1,0 +1,17 @@
+@use '../../../../assets/styles/variables' as vars;
+
+.header {
+  background-color: vars.$color-purple-600;
+  text-align: center;
+  color: vars.$color-white;
+  font-family: vars.$font-family;
+  font-size: vars.$font-size-body;
+  font-weight: vars.$font-weight-regular;
+  margin: 0;
+}
+
+.header-content {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}

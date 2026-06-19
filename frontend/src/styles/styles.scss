@@ -1,0 +1,36 @@
+/* Import CSS custom properties (variables) */
+@use '../assets/styles/variables' as vars;
+@use '@angular/material' as mat;
+
+/* Global styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html,
+body {
+  height: 100%;
+  width: 100%;
+}
+
+body {
+  font-family: vars.$font-family;
+  font-size: vars.$font-size-body;
+  color: vars.$color-grey-800;
+  background-color: vars.$color-grey-50;
+  line-height: 1.5;
+}
+
+// TODO https://next.material.angular.dev/components/button/styling
+// сделать как на https://github.com/deep-top и https://codepen.io/login
+
+:root {
+  // filled button
+  @include mat.button-overrides((
+    filled-container-shape: 8px,
+    outlined-container-shape: 8px,
+    filled-container-color: vars.$color-purple-600
+  ));
+}

@@ -12,12 +12,12 @@ interface LoginData {
   selector: 'app-login',
   imports: [FormRoot, MatFormField, MatLabel, MatInput, MatButton, FormField],
   templateUrl: './login.component.html',
-  styleUrl: './login.component.css',
+  styleUrl: './login.component.scss',
 })
 export class LoginComponent {
   readonly loginModel = signal<LoginData>({
-    username: "",
-    password: "",
+    username: '',
+    password: '',
   });
 
   readonly loginForm = form<LoginData>(

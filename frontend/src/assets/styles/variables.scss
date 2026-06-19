@@ -1,0 +1,39 @@
+/* Color Palette - based on style-guide.md */
+
+/* Primary colors */
+$color-purple-600: hsl(238, 40%, 52%);
+$color-pink-400: hsl(358, 79%, 66%);
+$color-purple-200: hsl(239, 57%, 85%);
+$color-pink-200: hsl(357, 100%, 86%);
+
+/* Neutral colors */
+$color-grey-800: hsl(212, 24%, 26%);
+$color-grey-500: hsl(211, 10%, 45%);
+$color-grey-100: hsl(223, 19%, 93%);
+$color-grey-50: hsl(228, 33%, 97%);
+$color-white: hsl(0, 100%, 100%);
+
+/* Typography */
+$font-family: 'Rubik', sans-serif;
+$font-size-body: 16px;
+$font-weight-regular: 400;
+$font-weight-medium: 500;
+$font-weight-bold: 700;
+
+/* Export CSS custom properties for global use */
+:root {
+  --color-purple-600: #{$color-purple-600};
+  --color-pink-400: #{$color-pink-400};
+  --color-purple-200: #{$color-purple-200};
+  --color-pink-200: #{$color-pink-200};
+  --color-grey-800: #{$color-grey-800};
+  --color-grey-500: #{$color-grey-500};
+  --color-grey-100: #{$color-grey-100};
+  --color-grey-50: #{$color-grey-50};
+  --color-white: #{$color-white};
+  --font-family: #{$font-family};
+  --font-size-body: #{$font-size-body};
+  --font-weight-regular: #{$font-weight-regular};
+  --font-weight-medium: #{$font-weight-medium};
+  --font-weight-bold: #{$font-weight-bold};
+}
