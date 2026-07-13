@@ -3,6 +3,7 @@ import { HashService } from "../services/hash";
 
 export interface User extends Document {
     username: string;
+    email: string;
     password: string;
     image: { png: string; webp: string };
 }
@@ -14,19 +15,24 @@ type UserModel = Model<User>;
 
 const userSchema: Schema = new Schema<User, UserModel>({
     username: {
-        type: String, 
-        required: true, 
-        unique: true 
+        type: String,
+        required: true,
+        unique: true
     },
-    password: { 
-        type: String, 
-        required: true, 
-        unique: true, 
-        select: false 
+    email: {
+        type: String,
+        required: true,
+        unique: true
     },
-    image: { 
-        png: String, 
-        webp: String 
+    password: {
+        type: String,
+        required: true,
+        unique: true,
+        select: false
+    },
+    image: {
+        png: String,
+        webp: String
     },
 }, { timestamps: true })
 

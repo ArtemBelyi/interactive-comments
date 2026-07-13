@@ -1,0 +1,22 @@
+<div class="register-container">
+  <form class="register-content" [formRoot]="registerForm">
+    <h1 class="form-title">Sign Up</h1>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Username</mat-label>
+      <input matInput [formField]="registerForm.username">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Email</mat-label>
+      <input matInput [formField]="registerForm.email" type="email">
+    </mat-form-field>
+
+    <mat-form-field class="example-full-width">
+      <mat-label>Password</mat-label>
+      <input matInput [formField]="registerForm.password" type="password">
+    </mat-form-field>
+
+    <button matButton="filled" type="submit">Register</button>
+  </form>
+</div>
