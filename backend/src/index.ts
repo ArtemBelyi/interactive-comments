@@ -14,13 +14,10 @@ const app = express()
 
 app.use(express.json());
 app.use(cookieParser());
-
 app.use(responseHandler);
 
 app.use(authRouter);
-
 app.use(authMiddleware);
-
 app.use(userRouter);
 app.use(commentRouter);
 

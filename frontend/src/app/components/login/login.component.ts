@@ -1,12 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { FormRoot, FormField, form, required } from '@angular/forms/signals';
 import { MatFormField, MatInput, MatLabel } from '@angular/material/input';
+import { AuthData } from '../../core/services/auth-types';
+import { AuthService } from '../../core/services/auth.service';
 import { MatButton } from '@angular/material/button';
-
-interface LoginData {
-  username: string;
-  password: string;
-}
 
 @Component({
   selector: 'app-login',
@@ -15,12 +12,14 @@ interface LoginData {
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
-  readonly loginModel = signal<LoginData>({
+  private authService = inject(AuthService);
+
+  readonly loginModel = signal<AuthData>({
     username: '',
     password: '',
   });
 
-  readonly loginForm = form<LoginData>(
+  readonly loginForm = form<AuthData>(
     this.loginModel,
     (schemaPath) => {
       required(schemaPath.username, { message: 'Username is required' });
@@ -29,7 +28,7 @@ export class LoginComponent {
     {
       submission: {
         action: async (field) => {
-          // TODO field().value()
+          this.login(field().value())
         },
         onInvalid: (field) => {
           // TODO
@@ -37,4 +36,8 @@ export class LoginComponent {
       },
     },
   );
+
+  login(data: AuthData): void {
+    this.authService.login(data).subscribe(console.log)
+  }
 }

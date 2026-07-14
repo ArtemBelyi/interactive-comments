@@ -67,7 +67,8 @@
               "buildTarget": "fontend:build:production"
             },
             "development": {
-              "buildTarget": "fontend:build:development"
+              "buildTarget": "fontend:build:development",
+              "proxyConfig": "src/proxy.conf.json"
             }
           },
           "defaultConfiguration": "development"
