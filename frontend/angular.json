@@ -7,7 +7,7 @@
   },
   "newProjectRoot": "projects",
   "projects": {
-    "fontend": {
+    "frontend": {
       "projectType": "application",
       "schematics": {
         "@schematics/angular:service": {
@@ -64,10 +64,10 @@
           "builder": "@angular/build:dev-server",
           "configurations": {
             "production": {
-              "buildTarget": "fontend:build:production"
+              "buildTarget": "frontend:build:production"
             },
             "development": {
-              "buildTarget": "fontend:build:development",
+              "buildTarget": "frontend:build:development",
               "proxyConfig": "src/proxy.conf.json"
             }
           },

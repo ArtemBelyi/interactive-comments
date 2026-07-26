@@ -39,5 +39,3 @@ process.on('SIGINT', async (): Promise<void> => {
 });
 
 startServer();
-
-// TODO
