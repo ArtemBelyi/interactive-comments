@@ -1,13 +1,9 @@
-import { Component, signal } from '@angular/core';
+import { Component, signal, inject } from '@angular/core';
 import { FormRoot, FormField, form, required, email } from '@angular/forms/signals';
 import { MatFormField, MatInput, MatLabel } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
-
-interface RegisterData {
-  username: string;
-  email: string;
-  password: string;
-}
+import { AuthService } from '../../core/services/auth.service';
+import { RegisterData } from '../../core/services/auth-types';
 
 @Component({
   selector: 'app-register',
@@ -16,6 +12,8 @@ interface RegisterData {
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent {
+  private authService = inject(AuthService);
+
   readonly registerModel = signal<RegisterData>({
     username: '',
     email: '',
@@ -33,7 +31,7 @@ export class RegisterComponent {
     {
       submission: {
         action: async (field) => {
-          // TODO field().value()
+          this.register(field().value())
         },
         onInvalid: (field) => {
           // TODO
@@ -41,4 +39,8 @@ export class RegisterComponent {
       },
     },
   );
+
+  register(data: RegisterData): void {
+    this.authService.register(data).subscribe(console.log)
+  }
 }

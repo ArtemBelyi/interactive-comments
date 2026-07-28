@@ -13,15 +13,15 @@ export class User implements UserType {
     return JwtService.decodeToken<UserToken>(token);
   }
 
-  get userId(): string {
+  get id(): string {
     return this.id;
   }
 
-  get userEmail(): string {
+  get email(): string {
     return this.email;
   }
 
-  get userUsername(): string {
+  get username(): string {
     return this.username;
   }
 }
