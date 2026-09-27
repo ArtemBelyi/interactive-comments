@@ -9,7 +9,6 @@ import { MatButton } from '@angular/material/button';
   selector: 'app-login',
   imports: [FormRoot, MatFormField, MatLabel, MatInput, MatButton, FormField],
   templateUrl: './login.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {

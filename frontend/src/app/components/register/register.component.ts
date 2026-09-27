@@ -9,7 +9,6 @@ import { RegisterData } from '../../core/services/auth-types';
   selector: 'app-register',
   imports: [FormRoot, MatFormField, MatLabel, MatInput, MatButton, FormField],
   templateUrl: './register.component.html',
-  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent {
