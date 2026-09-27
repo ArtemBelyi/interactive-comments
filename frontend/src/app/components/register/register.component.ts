@@ -1,4 +1,4 @@
-import { Component, signal, inject } from '@angular/core';
+import { Component, signal, inject, ChangeDetectionStrategy } from '@angular/core';
 import { FormRoot, FormField, form, required, email } from '@angular/forms/signals';
 import { MatFormField, MatInput, MatLabel } from '@angular/material/input';
 import { MatButton } from '@angular/material/button';
@@ -9,6 +9,7 @@ import { RegisterData } from '../../core/services/auth-types';
   selector: 'app-register',
   imports: [FormRoot, MatFormField, MatLabel, MatInput, MatButton, FormField],
   templateUrl: './register.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './register.component.scss',
 })
 export class RegisterComponent {
@@ -31,7 +32,7 @@ export class RegisterComponent {
     {
       submission: {
         action: async (field) => {
-          this.register(field().value())
+          this.register(field().value());
         },
         onInvalid: (field) => {
           // TODO
@@ -41,6 +42,6 @@ export class RegisterComponent {
   );
 
   register(data: RegisterData): void {
-    this.authService.register(data).subscribe(console.log)
+    this.authService.register(data).subscribe(console.log);
   }
 }

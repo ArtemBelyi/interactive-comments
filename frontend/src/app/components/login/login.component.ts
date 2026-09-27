@@ -1,4 +1,4 @@
-import { Component, signal, inject } from '@angular/core';
+import { Component, signal, inject, ChangeDetectionStrategy } from '@angular/core';
 import { FormRoot, FormField, form, required } from '@angular/forms/signals';
 import { MatFormField, MatInput, MatLabel } from '@angular/material/input';
 import { AuthData } from '../../core/services/auth-types';
@@ -9,6 +9,7 @@ import { MatButton } from '@angular/material/button';
   selector: 'app-login',
   imports: [FormRoot, MatFormField, MatLabel, MatInput, MatButton, FormField],
   templateUrl: './login.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './login.component.scss',
 })
 export class LoginComponent {
@@ -28,7 +29,7 @@ export class LoginComponent {
     {
       submission: {
         action: async (field) => {
-          this.login(field().value())
+          this.login(field().value());
         },
         onInvalid: (field) => {
           // TODO
@@ -38,6 +39,6 @@ export class LoginComponent {
   );
 
   login(data: AuthData): void {
-    this.authService.login(data).subscribe(console.log)
+    this.authService.login(data).subscribe(console.log);
   }
 }

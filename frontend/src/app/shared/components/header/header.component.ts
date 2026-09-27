@@ -1,12 +1,13 @@
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 import { MatToolbar } from '@angular/material/toolbar';
-import {MatButton} from '@angular/material/button';
+import { MatButton } from '@angular/material/button';
 import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-header',
   imports: [MatToolbar, MatButton],
   templateUrl: './header.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush,
   styleUrl: './header.component.scss',
 })
 export class HeaderComponent {
